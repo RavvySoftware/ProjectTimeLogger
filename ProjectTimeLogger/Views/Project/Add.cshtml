@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Add Project";
+}
+
+@model ProjectTimeLogger.Models.ProjectAddViewModel
+
+<h2>Add Project</h2>
+<partial name="_Message" />
+<form asp-action="Add">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label asp-for="ProjectName"></label>
+                <input asp-for="ProjectName" class="form-control" />
+                <span asp-validation-for="ProjectName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <input type="submit" value="Submit" />
+        </div>
+    </div>
+</form>
