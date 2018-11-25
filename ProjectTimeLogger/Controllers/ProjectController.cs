@@ -19,9 +19,10 @@ namespace ProjectTimeLogger.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public IActionResult Index()
         {
             var model = new ProjectAddViewModel();
+            model.ProjectName = TempData["ProjectName"]?.ToString();
 
             return View(model);
         }
@@ -38,11 +39,13 @@ namespace ProjectTimeLogger.Controllers
                 catch (ProjectAlreadyExistsException)
                 {
                     TempData["Error"] = "This project already exists.";
-                    return View(model);
+                    TempData["ProjectName"] = model.ProjectName;
+                    
+                    return RedirectToAction(nameof(Index));
                 }
 
                 TempData["Success"] = "This project was successfully created.";
-                return RedirectToAction(nameof(Add));
+                return RedirectToAction(nameof(Index));
             }
             else
             {

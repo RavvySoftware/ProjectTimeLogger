@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,35 +11,34 @@
 
     <link href="~/css/site.css" rel="stylesheet" />
     <script src="~/js/site.js"></script>
-    <script src="~/lib/jquery/dist/jquery.js"></script>
-    @*<script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>*@
-    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
-    <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+
+    <script src="~/node_modules/jquery/dist/jquery.js"></script>
+    <script src="~/node_modules/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/node_modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+    <link href="~/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/node_modules/bootstrap/dist/js/bootstrap.js"></script>
 
 
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Project Time Logger</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Project" asp-action="Add">Add Project</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-                <partial name="_LoginPartial" />
-            </div>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="margin-bottom: 15px;">
+        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Project Time Logger</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="Project" asp-action="Index" class="nav-link">Project</a>
+                </li>
+            </ul>
+            <span class="navbar-text d-none d-md-block">
+                Hello @UserManager.GetUserName(User)!
+            </span>
         </div>
+        
     </nav>
 
     <partial name="_CookieConsentPartial" />
