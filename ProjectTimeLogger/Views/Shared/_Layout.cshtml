@@ -35,7 +35,8 @@
                 </li>
             </ul>
             <span class="navbar-text d-none d-md-block">
-                Hello @UserManager.GetUserName(User)!
+                @{ var username = UserManager.GetUserName(User) ?? "random person";}
+                Hello @username!
             </span>
         </div>
         

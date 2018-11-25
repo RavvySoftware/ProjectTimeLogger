@@ -8,6 +8,7 @@ namespace ProjectTimeLogger.Data
 {
     public interface IProjectData
     {
-        void AddProject(ProjectAddViewModel model);
+        void AddProject(ProjectIndexViewModel model);
+        List<ChangeProjectEditModel> ShowProjects();
     }
 }

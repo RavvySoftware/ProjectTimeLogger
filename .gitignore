@@ -1,3 +1,4 @@
 /.vs
 /ProjectTimeLogger/bin
 /ProjectTimeLogger/obj
+/ProjectTimeLogger/node_modules

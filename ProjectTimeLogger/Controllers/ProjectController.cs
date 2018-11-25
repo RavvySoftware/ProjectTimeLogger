@@ -21,14 +21,14 @@ namespace ProjectTimeLogger.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var model = new ProjectAddViewModel();
-            model.ProjectName = TempData["ProjectName"]?.ToString();
-
+            var model = new ProjectIndexViewModel();
+            model.AddProject.Name = TempData["ProjectName"]?.ToString();
+            model.ShowProjects = _projectData.ShowProjects();
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Add(ProjectAddViewModel model)
+        public IActionResult Add(ProjectIndexViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -39,7 +39,7 @@ namespace ProjectTimeLogger.Controllers
                 catch (ProjectAlreadyExistsException)
                 {
                     TempData["Error"] = "This project already exists.";
-                    TempData["ProjectName"] = model.ProjectName;
+                    TempData["ProjectName"] = model.AddProject.Name;
                     
                     return RedirectToAction(nameof(Index));
                 }

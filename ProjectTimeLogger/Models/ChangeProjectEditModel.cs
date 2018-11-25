@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace ProjectTimeLogger.Models
 {
-    public class ProjectAddViewModel
+    public class ChangeProjectEditModel
     {
         [Required]
         [MaxLength(50)]
         [Display(Name = "Project Name")]
-        public string ProjectName { get; set; }
+        public string Name { get; set; }
+        [Required]
+        public int Id { get; set; }
+
     }
 }

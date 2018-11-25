@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Add Project";
 }
-@model ProjectTimeLogger.Models.ProjectAddViewModel
+@model ProjectTimeLogger.Models.ProjectIndexViewModel
 
 <h2>Add Project</h2>
 <partial name="_Message" />
@@ -9,9 +9,9 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-group">
-                <label asp-for="ProjectName"></label>
-                <input asp-for="ProjectName" class="form-control" />
-                <span asp-validation-for="ProjectName" class="text-danger"></span>
+                <label asp-for="AddProject.Name"></label>
+                <input asp-for="AddProject.Name" class="form-control" />
+                <span asp-validation-for="AddProject.Name" class="text-danger"></span>
             </div>
         </div>
     </div>
@@ -24,4 +24,18 @@
     </div>
 </form>
 
+
 <h2>Projects</h2>
+@foreach (var project in Model.ShowProjects)
+{
+    <div class="row">
+        <div class="col">
+            @project.Name
+        </div>
+    </div>
+
+    <span></span>
+}
+
+
+
