@@ -29,7 +29,8 @@ namespace ProjectTimeLogger.Data
 
             using (var db = new postgresContext())
             {
-                if (db.Project.Any(x => x.Name == model.AddProject.Name))
+                var userId = _userData.GetID();
+                if (db.Project.Any(x => (x.Name == model.AddProject.Name) && (x.UserId == userId)))
                 {
                     throw new ProjectAlreadyExistsException();
                 }
@@ -37,7 +38,7 @@ namespace ProjectTimeLogger.Data
                 db.Project.Add(new Project()
                 {
                     Name = model.AddProject.Name,
-                    UserId = _userData.GetID()
+                    UserId = userId
                 });
                                 
                 db.SaveChanges();
